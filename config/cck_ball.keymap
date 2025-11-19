@@ -77,7 +77,9 @@
 &trans             &trans        &trans        &trans        &trans        &trans        &mkp LCLK  &mkp RCLK  &trans  &trans  &trans   &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings =
+                <&inc_dec_kp PG_UP PG_DN>,
+                <&inc_dec_kp PG_UP PG_DN>;
         };
 
         BT_layers {
@@ -115,7 +117,7 @@
 
             sensor-bindings =
                 <&scroll_vertical_encoder>,
-                // 编码器1：上下滚动,,
+                // 编码器1：上下滚动,,,
                 <&scroll_horizontal_encoder>;
 
             // 编码器2：左右滚动
