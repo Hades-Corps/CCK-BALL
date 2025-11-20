@@ -48,7 +48,29 @@
         tap-ms = <100>;
     };
 
+    CapL_L: CapL_L {
+        compatible = "zmk,behavior-tap-dance";
+        label = "CAPL_L";
+        #binding-cells = <0>;
+        bindings = <&kp LEFT_SHIFT>, <&kp LEFT_SHIFT>;
+    };
+
     behaviors {
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        shf-del {
+            bindings = <&kp DEL>;
+            key-positions = <36 11>;
+            timeout-ms = <0>;
+        };
+
+        shf_cap {
+            bindings = <&kp CLCK>;
+            key-positions = <36 47>;
+        };
     };
 
     keymap {
@@ -58,23 +80,23 @@
             bindings = <
 &kp ESC           &kp N1        &kp N2        &kp N3     &kp N4     &kp N5            &kp N6             &kp N7   &kp N8     &kp N9     &kp N0     &kp BACKSPACE
 &kp TAB           &kp Q         &kp W         &kp E      &kp R      &kp T             &kp Y              &kp U    &kp I      &kp O      &kp P      &kp BSLH
-&mkp MCLK         &kp A         &lt 4 S       &kp D      &lt 3 F    &kp G             &kp H              &kp J    &kp K      &kp L      &kp SEMI   &kp ENTER
+&mkp MCLK         &kp A         &kp S         &kp D      &kp F      &kp G             &kp H              &kp J    &kp K      &kp L      &kp SEMI   &kp ENTER
 &kp LEFT_SHIFT    &kp Z         &kp X         &kp C      &kp V      &kp B             &kp N              &kp M    &kp COMMA  &kp DOT    &kp SLASH  &kp RIGHT_SHIFT
 &kp LEFT_CONTROL  &kp LEFT_WIN  &kp LEFT_ALT  &mkp LCLK  &mkp RCLK  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp SQT  &kp SPACE  &kp MINUS  &kp EQUAL  &mo 1
             >;
 
             sensor-bindings =
-                <&inc_dec_kp UP_ARROW DOWN_ARROW>,
+                <&scroll_vertical_encoder>,
                 <&inc_dec_kp RIGHT_ARROW LEFT_ARROW>;
         };
 
         F_layers {
             bindings = <
 &kp GRAVE     &kp F1        &kp F2        &kp F3        &kp F4        &kp F5        &kp F6     &kp F7     &kp F8  &kp F9  &kp F10  &kp F11
-&out OUT_USB  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none      &none      &none   &trans  &trans   &trans
-&trans        &none         &none         &none         &none         &trans        &mkp LCLK  &mkp RCLK  &trans  &trans  &trans   &trans
-&trans        &trans        &trans        &trans        &trans        &none         &none      &none      &trans  &trans  &none    &trans
-&trans        &trans        &out OUT_BLE  &trans        &trans        &trans        &mkp LCLK  &mkp RCLK  &trans  &trans  &trans   &trans
+&out OUT_USB  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none      &none      &none   &none   &none    &none
+&none         &none         &none         &none         &none         &none         &mkp LCLK  &mkp RCLK  &none   &none   &none    &none
+&none         &none         &none         &none         &none         &none         &none      &none      &none   &none   &none    &none
+&none         &none         &out OUT_BLE  &none         &none         &none         &mkp LCLK  &mkp RCLK  &none   &none   &none    &none
             >;
 
             sensor-bindings =
@@ -84,43 +106,14 @@
 
         BT_layers {
             bindings = <
-&out OUT_BLE  &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans      &trans  &trans  &trans  &trans  &kp W
-&out OUT_USB  &trans          &trans        &trans        &trans        &trans        &trans      &trans  &trans  &trans  &trans  &trans
-&trans        &bt BT_CLR_ALL  &trans        &trans        &trans        &trans        &trans      &trans  &trans  &trans  &trans  &trans
-&trans        &trans          &trans        &bt BT_CLR    &trans        &trans        &bt BT_NXT  &trans  &trans  &trans  &trans  &trans
-&trans        &trans          &trans        &trans        &trans        &trans        &trans      &trans  &trans  &trans  &trans  &trans
+&out OUT_BLE  &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none       &none  &none  &none  &none  &kp W
+&out OUT_USB  &none           &none         &none         &none         &none         &none       &none  &none  &none  &none  &none
+&none         &bt BT_CLR_ALL  &none         &none         &none         &none         &none       &none  &none  &none  &none  &none
+&none         &none           &none         &bt BT_CLR    &none         &none         &bt BT_NXT  &none  &none  &none  &none  &none
+&none         &none           &none         &none         &none         &none         &none       &none  &none  &none  &none  &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
-        };
-
-        scroll-layers {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-            >;
-
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
-        };
-
-        snipe-layers {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-            >;
-
-            sensor-bindings =
-                <&scroll_vertical_encoder>,
-                // 编码器1：上下滚动,,,,,,,,
-                <&scroll_horizontal_encoder>;
-
-            // 编码器2：左右滚动
         };
     };
 };
