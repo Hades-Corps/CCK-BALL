@@ -55,17 +55,20 @@
         bindings = <&kp LEFT_SHIFT>, <&kp LEFT_SHIFT>;
     };
 
+    Del: Del {
+        compatible = "zmk,behavior-mod-morph";
+        label = "DEL";
+        bindings = <&kp BACKSPACE>, <&kp DELETE>;
+
+        #binding-cells = <0>;
+        mods = <(MOD_LSFT)>;
+    };
+
     behaviors {
     };
 
     combos {
         compatible = "zmk,combos";
-
-        shf-del {
-            bindings = <&kp DEL>;
-            key-positions = <36 11>;
-            timeout-ms = <0>;
-        };
 
         shf_cap {
             bindings = <&kp CLCK>;
@@ -92,15 +95,15 @@
 
         F_layers {
             bindings = <
-&kp GRAVE     &kp F1        &kp F2        &kp F3        &kp F4        &kp F5        &kp F6     &kp F7     &kp F8  &kp F9  &kp F10  &kp F11
-&out OUT_USB  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none      &none      &none   &none   &none    &none
-&none         &none         &none         &none         &none         &none         &mkp LCLK  &mkp RCLK  &none   &none   &none    &none
-&none         &none         &none         &none         &none         &none         &none      &none      &none   &none   &none    &none
-&none         &none         &out OUT_BLE  &none         &none         &none         &mkp LCLK  &mkp RCLK  &none   &none   &none    &none
+&kp GRAVE     &kp F1        &kp F2        &kp F3        &kp F4         &kp F5        &kp F6     &kp F7     &kp F8  &kp F9  &kp F10  &kp F11
+&out OUT_USB  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3   &bt BT_SEL 4  &none      &none      &none   &none   &none    &none
+&none         &none         &none         &none         &none          &none         &mkp LCLK  &mkp RCLK  &none   &none   &none    &none
+&none         &none         &none         &none         &none          &none         &none      &none      &none   &none   &none    &none
+&none         &none         &out OUT_BLE  &kp PAGE_UP   &kp PAGE_DOWN  &none         &mkp LCLK  &mkp RCLK  &none   &none   &none    &none
             >;
 
             sensor-bindings =
-                <&inc_dec_kp PG_UP PG_DN>,
+                <&inc_dec_kp UP_ARROW DOWN_ARROW>,
                 <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
